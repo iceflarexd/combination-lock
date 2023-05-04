@@ -58,12 +58,15 @@ function drawNumbers(context, position) {
   context.fillStyle = "white";
   context.textAlign = "center";
   context.textBaseline = "middle";
-  for (let i = 0; i < 8; i++) {
-    const number = (i * 5 + 40) % 40;
-    const angle = ((-90 + i * 5 - position + 40) * Math.PI) / 20;
-    const x = centerX + (lockRadius - 50) * Math.cos(angle);
-    const y = centerY + (lockRadius - 50) * Math.sin(angle);
-    context.fillText(number.toString(), x, y);
+  for (let i = 0; i < 40; i += 5) {
+    const angle = ((i - 10 - position) * Math.PI) / 20;
+    const x = centerX + (lockRadius - 45) * Math.cos(angle);
+    const y = centerY + (lockRadius - 45) * Math.sin(angle);
+    context.save();
+    context.translate(x, y);
+    context.rotate(angle + Math.PI / 2);
+    context.fillText(i.toString(), 0, 0);
+    context.restore();
   }
 }
 
