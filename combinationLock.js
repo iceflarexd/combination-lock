@@ -41,17 +41,16 @@ function drawLock() {
 }
 
 function drawTicks(context, position) {
-  context.beginPath();
   for (let i = 0; i < 40; i++) {
+    context.beginPath();
     const angle = ((i - position) * Math.PI) / 20;
-    const tickLength = i % 5 === 0 ? 25 : 10;
+    const tickLength = i % 5 === 0 ? 20 : 10;
+    context.lineWidth = i % 5 === 0 ? 4 : 2;
     context.moveTo(centerX + (lockRadius - tickLength) * Math.cos(angle), centerY + (lockRadius - tickLength) * Math.sin(angle));
     context.lineTo(centerX + lockRadius * Math.cos(angle), centerY + lockRadius * Math.sin(angle));
+    context.stroke();
   }
-
   context.strokeStyle = "white";
-  context.lineWidth = 2;
-  context.stroke();
 }
 
 function drawNumbers(context, position) {
